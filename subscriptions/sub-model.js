@@ -34,7 +34,7 @@ function findSnacks(id) {
 // };
 
 async function addSub(sub) {
-    const [id] = await db('subs').insert(sub);
+    const [id] = await db('subs').insert(sub, 'id');
 
     return findSubById(id);
 

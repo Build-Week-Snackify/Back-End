@@ -18,13 +18,13 @@ function find() {
 
 function add(request) {
     return db('one')
-    .insert(request)
+    .insert(request, 'id')
     .then(ids => ({ id: ids[0] }))
 };
 
 function addOne(one) {
     return db('one')
-    .insert(one)
+    .insert(one, 'id')
     .then(ids => ({ id: ids[0] }))
 }
 

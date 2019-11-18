@@ -33,13 +33,13 @@ function findNutritionById(id) {
 
 function add(snack) {
     return db('snacks')
-    .insert(snack)
+    .insert(snack, 'id')
     .then(ids => ({ id: ids[0] }))
 };
 
 function addNutrition(nutrition) {
     return db('nutrition')
-    .insert(nutrition)
+    .insert(nutrition, 'id')
     .then(ids => ({ id: ids[0] }))
 }
 
