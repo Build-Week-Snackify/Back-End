@@ -18,6 +18,10 @@ server.use(cors());
 server.use(express.json());
 
 
+server.get('/', (req,res) => {
+    res.status(200).json({ message: "Welcome to Snackify!" })
+});
+
 server.use('/auth', authRouter);
 server.use('/snacks', authenticate, snackRouter);
 server.use('/subs', authenticate, subRouter);
