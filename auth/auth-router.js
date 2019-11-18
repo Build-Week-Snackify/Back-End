@@ -56,7 +56,7 @@ router.post('/register/employee', (req, res) => {
     }
 });
 
-router.post('/login/org', (req, res) => {
+router.post('/login/organization', (req, res) => {
     let { username, password } = req.body;
 
     Users.findBy({ username })
