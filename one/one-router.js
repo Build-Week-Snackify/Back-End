@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const Request = require('./request-model');
+const Request = require('./one-model');
 
 //GET ALL REQUESTS
 router.get('/', checkRole('employee'), (req, res) => {
