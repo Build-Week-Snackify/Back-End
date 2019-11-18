@@ -1,67 +1,75 @@
 # Back-End
-Backend engineers
+
 
 Snack vending machines in offices are the worst. They are stocked with snacks that either unhealthy or old and stale - and they are always in dire need of a restock. Nobody gets a say in which snacks are stocked or when they should be rotated or re-stocked. With Snackify - the office snack subscription service and app - send your office snacktime woes packing faster than Janet from HR did to your annoying cubicle-mate last week!
 
-Endpoints
+# Endpoints
 
-Authentication
-Request Type	Endpoint	Description
-POST	/auth/register/organization	Creates New Organization
-POST	/auth/register/employee	Creates Employee
-POST	/auth/login/organization	Creates JWT*
-POST	/auth/login/employee	Creates JWT*
-JSON Web Tokens Used to Verify Users
-
-
-Changing the role of employee by employee ID (Only accessible to those with the role of orgAdmins and organizations)
-Request Type	Endpoint	Description
-PUT	/auth/:id/update-role	Changes role of an employee
+## Authentication
+|Request Type|	Endpoint	|Description|
+|:---------:|:-----------:|:---------------:|
+|POST	|/auth/register/organization|	Creates New Organization|
+|POST	|/auth/register/employee	|Creates Employee|
+|POST	|/auth/login/organization|	Creates JWT*|
+|POST	|/auth/login/employee	|Creates JWT*|
+* JSON Web Tokens Used to Verify Users
 
 
-
-
-Snacks
-Request Type	Endpoint	Description
-GET	/snacks	Return All Snacks
-GET	/snacks/:id/nutrition	Return Nutrition By Snack ID
-POST	/snacks/nutrition	Creates Nutrition Fact
-POST	/snacks	    Creates Snack
-PUT	/snacks/:id	Updates a Snack by Snack ID
-PUT	/snacks/:id/nutrition	Updates Nutrition Fact by Nutrition Fact ID
-DELETE	/snacks/:id	Remove Snack By ID
-DELETE	/snacks/:id/nutrition	Remove Nutrition Fact By Nutrition Fact ID 
-
-
-Subscriptions
-Request Type	Endpoint	Description
-GET	   /subs	Return All Subscriptions
-GET	/subs/:id/snacks	Return All Snacks For A Sub By Sub ID
-POST	/subs	Adds New Subscription
-PUT	/subs/:id	Update Subscription By ID
-DELETE	/subs/:id	Remove Subscription By ID
-
-Purchases
-Request Type	Endpoint	Description
-GET	   /purchase	Return All Purchases
-POST	/purchase	Adds New Purchase
-PUT	/purchase/:id	Update Purchase By Purchase ID
-DELETE	/purchase/:id	Remove Purchase By Purchase ID
-
-Requests
-Request Type	Endpoint	Description
-GET	   /request	Return All Requests
-POST	/request	Adds New Request
-PUT	/request/:id	Update Request By Request ID
-DELETE	/request/:id	Remove Request By Request ID
+## Changing the role of employee by employee ID (Only accessible to those with the role of orgAdmins and organizations)
+|Request Type	|Endpoint|	Description|
+|:-----------:|:-----------:|:----------------:|
+|PUT|	/auth/:id/update-role	|Changes role of an employee|
 
 
 
-Data Models
 
-Authentication
-Register
-A POST request to the /auth/register/organization endpoint expects to recieve an object as follows: (EVERY FIELD IS REQUIRED)
+## Snacks
+|Request Type	|Endpoint	|Description|
+|:---------:|:-----------:|:--------------:|
+|GET|	/snacks	|Return All Snacks|
+|GET	|/snacks/:id/nutrition	|Return Nutrition By Snack ID|
+|POST|	/snacks/nutrition	|Creates Nutrition Fact|
+|POST	|/snacks	   | Creates Snack|
+|PUT	|/snacks/:id|	Updates a Snack by Snack ID|
+|PUT	|/snacks/:id/nutrition	|Updates Nutrition Fact by Nutrition Fact ID|
+|DELETE	|/snacks/:id	|Remove Snack By ID|
+|DELETE	|/snacks/:id/nutrition|	Remove Nutrition Fact By Nutrition Fact ID |
+
+
+## Subscriptions
+|Request Type	|Endpoint	|Description|
+|:---------:|:----------:|:---------------:|
+|GET	|   /subs	|Return All Subscriptions|
+|GET|	/subs/:id/snacks|	Return All Snacks For A Sub By Sub ID|
+|POST	|/subs	|Adds New Subscription|
+|PUT	|/subs/:id	|Update Subscription By ID|
+|DELETE	|/subs/:id	|Remove Subscription By ID|
+
+## Purchases
+|Request Type	|Endpoint	|Description|
+|:---------:|:------------:|:--------------:|
+|GET	 |  /purchase	|Return All Purchases|
+|POST	/purchase	|Adds New Purchase|
+|PUT	|/purchase/:id|	Update Purchase By Purchase ID|
+|DELETE	|/purchase/:id	|Remove Purchase By Purchase ID|
+
+## Requests
+|Request Type|	Endpoint	|Description|
+|:---------:|:-----------:|:------------:|
+|GET	|   /request	|Return All Requests|
+|POST	|/request	|Adds New Request|
+|PUT	|/request/:id|	Update Request By Request ID|
+|DELETE|	/request/:id|	Remove Request By Request ID
+
+
+
+# Data Models
+
+## Authentication
+### Register
+
+#### A POST request to the /auth/register/organization endpoint expects to recieve an object as follows: (EVERY FIELD IS REQUIRED)
+```javascript
 {
     "username": "username"
     "password": "password",
@@ -74,7 +82,10 @@ A POST request to the /auth/register/organization endpoint expects to recieve an
     "contactPerson": "Fake Person",
     "role": "organization"
 }
-A POST request to the /auth/register/employee endpoint expects to recieve an object as follows: (EVERY FIELD IS REQUIRED)
+```
+
+#### A POST request to the /auth/register/employee endpoint expects to recieve an object as follows: (EVERY FIELD IS REQUIRED)
+```javascript
 {
     "username": "username"
     "password": "password",
@@ -88,31 +99,36 @@ A POST request to the /auth/register/employee endpoint expects to recieve an obj
     "role": "organization",
     "orgId": Organization # goes here
 }
+```
+
+|Field	 |  Type	 |	    Unique   |
+|:------:|:----------:|:--------------:|
+|username |	String	|  true	|
 
 
-Field	Type		Unique
-username	String	true	
 
-
-
-Login
-A POST request to the auth/login/organization endpoint expects to recieve an object as follows:
+### Login
+#### A POST request to the auth/login/organization endpoint expects to recieve an object as follows:
+```javascript
 {
     "email": "email@adress.com",
     "password": "happytree"
 }
-A POST request to the auth/login/employee endpoint expects to recieve an object as follows:
+```
+
+#### A POST request to the auth/login/employee endpoint expects to recieve an object as follows:
+```javascript
 {
     "email": "email@adress.com",
     "password": "happytree"
 }
-
+```
 NOTE: If successful, a JSON Web Token will be returned. This must be stored and used as authentication for API calls to snacks, subscriptions and request endpoints.
 
 
-Changing the Role
-A PUT /auth/:id/update-role	endpoint will return an object as follows:
-
+### Changing the Role
+#### A PUT /auth/:id/update-role	endpoint will return an object as follows:
+```javascript
 {   
     "id": 1
     "username": "username"
@@ -127,9 +143,11 @@ A PUT /auth/:id/update-role	endpoint will return an object as follows:
     "role": "organization",
     "orgId": Organization # goes here
 }
+```
 
-
-A GET,PUT,POST request to the /subs endpoint will return an object as follows:
+### Subscriptions
+#### A GET,PUT,POST request to the /subs endpoint will return an object as follows:
+```javascript
 [
     {
         "id": 2,
@@ -139,11 +157,13 @@ A GET,PUT,POST request to the /subs endpoint will return an object as follows:
         "orgId": 1
     }
 ]
+```
 NOTE: For PUT requests an object only containing the changed field is required, if the field is to remain the same it is not needed. An 'id' isn't needed for POST requests.
 
 
-
-A GET, PUT, POST request to the /snacks endpoint will return an object as follows:
+### Snacks
+#### A GET, PUT, POST request to the /snacks endpoint will return an object as follows:
+```javascript
 {
     "id": 2,
     "name": "Name",
@@ -152,10 +172,12 @@ A GET, PUT, POST request to the /snacks endpoint will return an object as follow
     "price": '$5.00',
     "subId": 1
 }
+```
 NOTE: For PUT requests an object only containing the changed field is required, if the field is to remain the same it is not needed. An 'id' isn't needed for POST requests.
 
-
-A GET, PUT, POST request to the /snacks/nutrition endpoint will return an object as follows:
+### Nutrition
+#### A GET, PUT, POST request to the /snacks/nutrition endpoint will return an object as follows:
+```javascript
 {
     "id": 2,
     "calories": 2,
@@ -166,33 +188,32 @@ A GET, PUT, POST request to the /snacks/nutrition endpoint will return an object
     "allergens": "none,
     "snackId": 1
 }
+```
 NOTE: For PUT requests an object only containing the changed field is required, if the field is to remain the same it is not needed. An 'id' isn't needed for POST requests.
 
-A GET, PUT, POST request to the /purchase endpoint will return an object as follows:
-{
-    "id": 2,
-    "name": "Name",
-    "numberOfServings: 2,
-    "totalWeight": '1.5 grams',
-    "price": '$5.00',
-    "subId": 1
-}
-NOTE: For PUT requests an object only containing the changed field is required, if the field is to remain the same it is not needed. An 'id' isn't needed for POST requests.
 
-A GET, PUT, POST request to the /request endpoint will return an object as follows:
+
+### Request
+#### A GET, PUT, POST request to the /request endpoint will return an object as follows:
+```javascript
 {
     "id": 2,
     "snackName": "Name",
     "subId": 1
 }
+```
 NOTE: For PUT requests an object only containing the changed field is required, if the field is to remain the same it is not needed. An 'id' isn't needed for POST requests.
 
-A GET, PUT, POST request to the /purchase endpoint will return an object as follows:
+
+### Purchase 
+#### A GET, PUT, POST request to the /purchase endpoint will return an object as follows:
+```javascript
 {
     "id": 2,
     "snackName": "Name",
     "subId": 1
 }
+```
 NOTE: For PUT requests an object only containing the changed field is required, if the field is to remain the same it is not needed. An 'id' isn't needed for POST requests.
 
 
