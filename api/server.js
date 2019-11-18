@@ -21,7 +21,7 @@ server.use(express.json());
 server.use('/auth', authRouter);
 server.use('/snacks', authenticate, snackRouter);
 server.use('/subs', authenticate, subRouter);
-server.use('/request', authenticate, requestRouter);
+// server.use('/request', authenticate, requestRouter);
 server.use('/purchase', authenticate, purchaseRouter);
 
 
