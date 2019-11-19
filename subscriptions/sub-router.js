@@ -6,8 +6,8 @@ const Subs = require('./sub-model');
 
 //GETS ALL SUBS
 router.get('/', checkRole(['organization', 'orgAdmin']), (req, res) => {
-    const { id } = req.decodedJwt
-    Subs.findSub(id)
+
+    Subs.findSub()
         .then(subs => {
             res.send(subs)
         })
