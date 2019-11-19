@@ -115,7 +115,7 @@ Snack vending machines in offices are the worst. They are stocked with snacks th
 #### A POST request to the auth/login/organization endpoint expects to recieve an object as follows:
 ```javascript
 {
-    "email": "email@adress.com",
+    "username": "username",
     "password": "happytree"
 }
 ```
@@ -123,7 +123,7 @@ Snack vending machines in offices are the worst. They are stocked with snacks th
 #### A POST request to the auth/login/employee endpoint expects to recieve an object as follows:
 ```javascript
 {
-    "email": "email@adress.com",
+    "username": "username",
     "password": "happytree"
 }
 ```
