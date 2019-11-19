@@ -204,10 +204,9 @@ NOTE: For PUT requests an object only containing the changed field is required, 
 |Field	 |  Type	 |
 |:------:|:----------:|
 |monthlyFee| Float|
-|lengthOfSubscriptions |	Datetime	|
+|lengthOfSubscription |	Datetime	|
 |nameOfSubscription| String|
-|totalWeight |	Float|
-|price |	Float	|
+
 
 
 ### Snacks
