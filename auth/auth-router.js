@@ -24,7 +24,8 @@ router.post('/register/organization', (req, res) => {
 
         Users.insert(user)
             .then(saved => {
-                res.status(201).json({ message: 'Register successful!'})
+                
+                res.status(201).json({ message: 'Register successful!', user})
             })
             .catch(err => {
                 res.status(500).json(err);
@@ -46,7 +47,7 @@ router.post('/register/employee', (req, res) => {
 
         Users.add(user)
             .then(saved => {
-                res.status(201).json({ message: 'Register successful!'})
+                res.status(201).json({ message: 'Register successful!', user})
             })
             .catch(err => {
                 res.status(500).json(err);
@@ -67,8 +68,9 @@ router.post('/login/organization', (req, res) => {
                 const token = getJwtToken(user)
 
                 res.status(200).json({
-                    message: `Hello there ${user.username}!`,
-                    token
+                    message: `User ID: ${user.id}!`,
+                    token,
+                    
                 });
             } else {
                 res.status(401).json({ message: 'Invalid credentials, try again!'})
@@ -90,7 +92,7 @@ router.post('/login/employee', (req, res) => {
                 const token = getJwtToken(user)
 
                 res.status(200).json({
-                    message: `Hello there ${user.username}!`,
+                    message: `User ID: ${user.id}!`,
                     token
                 });
             } else {

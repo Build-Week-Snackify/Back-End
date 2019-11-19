@@ -36,6 +36,7 @@ function insert(org) {
         .where({ id })
         .first()
     })
+
 };
 
 function add(employee) {

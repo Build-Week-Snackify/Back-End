@@ -9,10 +9,13 @@ module.exports = {
     findSnacks
 };
 
-function findSub() {
-    return db
-    .select('*')
-    .from('subs');
+function findSub(id) {
+
+    // return db
+    // .select('*')
+    // .from('subs');
+    return db('subs')
+    .where({orgId: id})
 };
 
 function findSubById(id) {

@@ -193,7 +193,7 @@ NOTE: If successful, a JSON Web Token will be returned. This must be stored and 
     {
         "id": 2,
         "monthlyFee": "$5",
-        "lengthOfSubscription": 4/4/4040,
+        "lengthOfSubscription": "4/4/4040",
         "nameOfSubscription": "Name",
         "orgId": 1
     }
