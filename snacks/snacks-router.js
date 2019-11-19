@@ -4,7 +4,7 @@ const Snacks = require('./snack-model');
 
 
 //GETS ALL SNACKS
-router.get('/', checkRole('organization', 'orgAdmin'), (req, res) => {
+router.get('/',  (req, res) => {
 
     Snacks.find()
         .then(snacks => {
@@ -14,7 +14,7 @@ router.get('/', checkRole('organization', 'orgAdmin'), (req, res) => {
 });
 
 //GETS NUTRITIONAL FACTS BY SNACK ID
-router.get('/:id/nutrition', checkRole('organization', 'orgAdmin'), (req, res) => {
+router.get('/:id/nutrition', (req, res) => {
 
     const { id } = req.params;
 
@@ -32,7 +32,7 @@ router.get('/:id/nutrition', checkRole('organization', 'orgAdmin'), (req, res) =
 });
 
 //ADDS NUTRITIONAL FACT
-router.post('/nutrition', checkRole('organization', 'orgAdmin'), (req, res) => {
+router.post('/nutrition', checkRole(['organization', 'orgAdmin']), (req, res) => {
     const nutritionData = req.body;
 
     Snacks.addNutrition(nutritionData)
@@ -45,7 +45,7 @@ router.post('/nutrition', checkRole('organization', 'orgAdmin'), (req, res) => {
 });
 
 //ADDS A SNACK
-router.post('/', checkRole('organization', 'orgAdmin'), (req, res) => {
+router.post('/', checkRole(['organization', 'orgAdmin']), (req, res) => {
     const snackData = req.body;
 
     Snacks.add(snackData)
@@ -58,7 +58,7 @@ router.post('/', checkRole('organization', 'orgAdmin'), (req, res) => {
 });
 
 //UPDATES A SNACK
-router.put('/:id', checkRole('organization', 'orgAdmin'), (req, res) => {
+router.put('/:id', checkRole(['organization', 'orgAdmin']), (req, res) => {
     const { id } = req.params;
     const changes = req.body;
 
@@ -79,7 +79,7 @@ router.put('/:id', checkRole('organization', 'orgAdmin'), (req, res) => {
 });
 
 //UPDATES NUTRITION BY ID
-router.put('/:id/nutrition', checkRole('organization', 'orgAdmin'), (req, res) => {
+router.put('/:id/nutrition', checkRole(['organization', 'orgAdmin']), (req, res) => {
     const { id } = req.params;
     const changes = req.body;
 
@@ -100,7 +100,7 @@ router.put('/:id/nutrition', checkRole('organization', 'orgAdmin'), (req, res) =
 });
 
 //DELETES A SNACK BY ID
-router.delete('/:id', checkRole('organization', 'orgAdmin'), (req, res) => {
+router.delete('/:id', checkRole(['organization', 'orgAdmin']), (req, res) => {
     const { id } = req.params;
     
     Snacks.remove(id)
@@ -117,7 +117,7 @@ router.delete('/:id', checkRole('organization', 'orgAdmin'), (req, res) => {
 });
 
 //DELETES A NUTRITIONAL FACT BY ID
-router.delete('/:id/nutrition', checkRole('organization', 'orgAdmin'), (req, res) => {
+router.delete('/:id/nutrition', checkRole(['organization', 'orgAdmin']), (req, res) => {
     const { id } = req.params;
     
     Snacks.removeNutrition(id)
