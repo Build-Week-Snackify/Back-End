@@ -5,7 +5,7 @@ const Subs = require('./sub-model');
 
 
 //GETS ALL SUBS
-router.get('/', checkRole('organization', 'orgAdmin'), (req, res) => {
+router.get('/', checkRole(['organization', 'orgAdmin']), (req, res) => {
 
     Subs.findSub()
         .then(subs => {
@@ -16,7 +16,7 @@ router.get('/', checkRole('organization', 'orgAdmin'), (req, res) => {
 
 
 //GET ALL SNACKS BY SUB ID
-router.get('/:id/snacks', checkRole('organization', 'orgAdmin'), (req, res) => {
+router.get('/:id/snacks', checkRole(['organization', 'orgAdmin']), (req, res) => {
 
     const { id } = req.params;
 
@@ -34,7 +34,7 @@ router.get('/:id/snacks', checkRole('organization', 'orgAdmin'), (req, res) => {
 });
 
 //ADDS NEW SUB
-router.post('/', checkRole('organization', 'orgAdmin'), (req, res) => {
+router.post('/', checkRole(['organization', 'orgAdmin']), (req, res) => {
     const subData = req.body;
 
     Subs.addSub(subData)
@@ -47,7 +47,7 @@ router.post('/', checkRole('organization', 'orgAdmin'), (req, res) => {
 });
 
 //UPDATES A SUB BY ID
-router.put('/:id', checkRole('organization', 'orgAdmin'), (req, res) => {
+router.put('/:id', checkRole(['organization', 'orgAdmin']), (req, res) => {
     const { id } = req.params;
     const changes = req.body;
 
@@ -67,7 +67,7 @@ router.put('/:id', checkRole('organization', 'orgAdmin'), (req, res) => {
     })
 });
 
-router.delete('/:id', checkRole('organization', 'orgAdmin'), (req, res) => {
+router.delete('/:id', checkRole(['organization', 'orgAdmin']), (req, res) => {
     const { id } = req.params;
     
     Subs.remove(id)

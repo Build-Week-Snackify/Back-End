@@ -74,7 +74,7 @@ function checkRole(role) {
         if(role === req.decodedJwt.role) {
             next();
         } else {
-            res.status(403).send('Sorry, only organizations and organization admins allowed!')
+            res.status(403).send('Sorry, only employees allowed!')
         }
     }
 };
