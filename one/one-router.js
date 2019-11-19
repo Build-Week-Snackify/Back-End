@@ -3,7 +3,7 @@ const router = require('express').Router();
 const Request = require('./one-model');
 
 //GET ALL REQUESTS
-router.get('/', checkRole('employee'), (req, res) => {
+router.get('/',  (req, res) => {
 
     Request.find()
         .then(request => {
@@ -13,7 +13,7 @@ router.get('/', checkRole('employee'), (req, res) => {
 });
 
 //ADDS NEW REQUEST
-router.post('/', checkRole('employee'), (req, res) => {
+router.post('/',  (req, res) => {
     const requestData = req.body;
 
     Request.add(requestData)
@@ -26,7 +26,7 @@ router.post('/', checkRole('employee'), (req, res) => {
 });
 
 //UPDATES REQUEST
-router.put('/:id', checkRole('employee'), (req, res) => {
+router.put('/:id',  (req, res) => {
     const { id } = req.params;
     const changes = req.body;
 
@@ -47,7 +47,7 @@ router.put('/:id', checkRole('employee'), (req, res) => {
 });
 
 //DELETES REQUEST
-router.delete('/:id', checkRole('employee'), (req, res) => {
+router.delete('/:id',  (req, res) => {
     const { id } = req.params;
     
     Request.remove(id)
@@ -66,15 +66,3 @@ router.delete('/:id', checkRole('employee'), (req, res) => {
 
 module.exports = router;
 
-function checkRole(role) {
-
-    return function(req, res, next) {
-        console.log(req.decodedJwt)
-
-        if(role === req.decodedJwt.role) {
-            next();
-        } else {
-            res.status(403).send('Sorry, only employees allowed!')
-        }
-    }
-};
