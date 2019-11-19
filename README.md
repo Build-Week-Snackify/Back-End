@@ -3,6 +3,10 @@
 
 Snack vending machines in offices are the worst. They are stocked with snacks that either unhealthy or old and stale - and they are always in dire need of a restock. Nobody gets a say in which snacks are stocked or when they should be rotated or re-stocked. With Snackify - the office snack subscription service and app - send your office snacktime woes packing faster than Janet from HR did to your annoying cubicle-mate last week!
 
+
+# BaseURL 
+## https://snackify7.herokuapp.com/
+
 # Endpoints
 
 ## Authentication
