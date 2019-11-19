@@ -130,6 +130,43 @@ Snack vending machines in offices are the worst. They are stocked with snacks th
 NOTE: If successful, a JSON Web Token will be returned. This must be stored and used as authentication for API calls to snacks, subscriptions and request endpoints.
 
 
+#### A GET request to the auth/employees enpoint will return an object as follows:
+```javascript
+[
+    {
+        "id": 1,
+        "username": "jonbash2",
+        "password": "$2a$10$Jk7zVyJU/wdgXvgNgxkIoOc4GT72OoQOH7ykmaHiGT8BT7rHxjtUi",
+        "email": "jonbash@protonmail.com",
+        "phoneNumber": "1234567890",
+        "streetAddress": "124 Ross",
+        "state": "Nowhere",
+        "zipcode": "12345",
+        "fullName": "Jon Bash",
+        "contactPerson": "Jon Bash",
+        "role": "Employee?",
+        "orgId": 1
+    },
+    {
+        "id": 2,
+        "username": "jonbash3",
+        "password": "$2a$10$GY1VaR9oTP2Wx/L3afjAJeXHh/xzcl6jm2J.vahOoFKcBtztkdQ8K",
+        "email": "jonbash@protonmail.com",
+        "phoneNumber": "1234567890",
+        "streetAddress": "124 Ross",
+        "state": "Nowhere",
+        "zipcode": "12345",
+        "fullName": "Jon Bash",
+        "contactPerson": "Jon Bash",
+        "role": "Employeeeeee?",
+        "orgId": 1
+    }
+]
+```
+
+
+
+
 ### Changing the Role
 #### A PUT /auth/:id/update-role	endpoint will return an object as follows:
 ```javascript
@@ -156,13 +193,20 @@ NOTE: If successful, a JSON Web Token will be returned. This must be stored and 
     {
         "id": 2,
         "monthlyFee": "$5",
-        "lengthOfSubscription": "4/4/4040 - 4/3/6060",
+        "lengthOfSubscription": 4/4/4040,
         "nameOfSubscription": "Name",
         "orgId": 1
     }
 ]
 ```
 NOTE: For PUT requests an object only containing the changed field is required, if the field is to remain the same it is not needed. An 'id' isn't needed for POST requests.
+
+|Field	 |  Type	 |
+|:------:|:----------:|
+|monthlyFee| Float|
+|lengthOfSubscriptions |	Datetime	|
+|totalWeight |	Float|
+|price |	Float	|
 
 
 ### Snacks
@@ -173,11 +217,18 @@ NOTE: For PUT requests an object only containing the changed field is required, 
     "name": "Name",
     "numberOfServings": 2,
     "totalWeight": '1.5 grams',
-    "price": '$5.00',
+    "price": 5.00,
     "subId": 1
 }
 ```
 NOTE: For PUT requests an object only containing the changed field is required, if the field is to remain the same it is not needed. An 'id' isn't needed for POST requests.
+
+|Field	 |  Type	 |
+|:------:|:----------:|
+|name | string|
+|numberOfServings |	Integer	|
+|totalWeight |	Float|
+|price |	Float	|
 
 ### Nutrition
 #### A GET, PUT, POST request to the /snacks/nutrition endpoint will return an object as follows:
@@ -195,6 +246,14 @@ NOTE: For PUT requests an object only containing the changed field is required, 
 ```
 NOTE: For PUT requests an object only containing the changed field is required, if the field is to remain the same it is not needed. An 'id' isn't needed for POST requests.
 
+|Field	 |  Type	 |
+|:------:|:----------:|
+|calories | Float|
+|totalFat |	Float	|
+|totalSugars |	Float|
+|protein |	Float	|
+|carbs| Float |
+|allergens | string|
 
 
 ### Request
