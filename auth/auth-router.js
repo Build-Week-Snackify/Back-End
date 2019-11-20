@@ -68,7 +68,7 @@ router.post('/login/organization', (req, res) => {
                 const token = getJwtToken(user)
 
                 res.status(200).json({
-                    message: `User ID: ${user.id}!`,
+                    message: `User ID: ${user.id} & Role: ${user.role}!`,
                     token,
                     
                 });
@@ -92,7 +92,7 @@ router.post('/login/employee', (req, res) => {
                 const token = getJwtToken(user)
 
                 res.status(200).json({
-                    message: `User ID: ${user.id}!`,
+                    message: `User ID: ${user.id} & Role: ${user.role}!`,
                     token
                 });
             } else {
