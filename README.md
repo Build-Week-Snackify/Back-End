@@ -46,8 +46,8 @@ Snack vending machines in offices are the worst. They are stocked with snacks th
 |GET	|   /subs	|Return All Subscriptions|
 |GET|	/subs/:id/snacks|	Return All Snacks For A Sub By Sub ID|
 |POST	|/subs	|Adds New Subscription|
-|PUT	|/subs/:id	|Update Subscription By ID|
-|DELETE	|/subs/:id	|Remove Subscription By ID|
+|PUT	|/subs/:id	|Update Subscription By Subscription ID|
+|DELETE	|/subs/:id	|Remove Subscription By Subscription ID|
 
 ## Purchases
 |Request Type	|Endpoint	|Description|
@@ -199,8 +199,8 @@ __A GET request to /auth/organizations will return all organizations__
 [
     {
         "id": 2,
-        "monthlyFee": "$5",
-        "lengthOfSubscription": "4/4/4040",
+        "monthlyFee": 5,
+        "lengthOfSubscription": 4-4-4040,
         "nameOfSubscription": "Name",
         "orgId": 1
     }
@@ -223,7 +223,7 @@ NOTE: For PUT requests an object only containing the changed field is required, 
     "id": 2,
     "name": "Name",
     "numberOfServings": 2,
-    "totalWeight": '1.5 grams',
+    "totalWeight": 1.5,
     "price": 5.00,
     "subId": 1
 }
