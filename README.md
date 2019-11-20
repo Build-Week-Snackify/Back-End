@@ -237,10 +237,10 @@ NOTE: For PUT requests an object only containing the changed field is required, 
     "id": 2,
     "calories": 2,
     "totalFat": 2,
-    "totalSugars": '1.5 grams',
-    "protein": "1 gram",
-    "carbs": "1 gram",
-    "allergens": "none,
+    "totalSugars": 1.5 ,
+    "protein": 1,
+    "carbs": 1 1,
+    "allergens": "none",
     "snackId": 1
 }
 ```
