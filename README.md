@@ -168,7 +168,7 @@ NOTE: If successful, a JSON Web Token will be returned. This must be stored and 
 
 
 ### Changing the Role
-#### A PUT /auth/:id/update-role	endpoint will return an object as follows:
+#### A PUT request to /auth/:id/update-role	endpoint will return an object as follows:
 ```javascript
 {   
     "id": 1
@@ -185,6 +185,13 @@ NOTE: If successful, a JSON Web Token will be returned. This must be stored and 
     "orgId": Organization # goes here
 }
 ```
+
+### Getting all organizations
+__A GET request to /auth/organizations will return all organizations__
+
+
+
+
 
 ### Subscriptions
 #### A GET,PUT,POST request to the /subs endpoint will return an object as follows:

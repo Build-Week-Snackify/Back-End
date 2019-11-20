@@ -2,6 +2,7 @@ const db = require('../database/dbConfig');
 
 module.exports = {
     find,
+    findOrg,
     insert, 
      add,
     findBy,
@@ -15,6 +16,12 @@ function find() {
     return db
     .select('*')
     .from('employee');
+};
+
+function findOrg() {
+    return db
+    .select('*')
+    .from('org')
 };
 
 function findBy(filter) {

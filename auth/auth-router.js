@@ -135,6 +135,16 @@ router.get('/employees', authenticate, checkRole(['organization', 'orgAdmin']), 
 });
 
 
+router.get('/organizations', authenticate, checkRole(['organization', 'orgAdmin']), (req, res) => {
+
+    Users.findOrg()
+        .then(org => {
+            res.send(org)
+        })
+        .catch(err => res.json(err))
+});
+
+
 function getJwtToken(user) {
     console.log(user)
     const payload = {
