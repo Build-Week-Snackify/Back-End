@@ -100,7 +100,7 @@ Snack vending machines in offices are the worst. They are stocked with snacks th
     "zipcode": "12345",
     "fullName": "Full Name",
     "contactPerson": "Fake Person",
-    "role": "organization",
+    "role": "employee", // OR "orgAdmin"
     "orgId": Organization # goes here
 }
 ```
