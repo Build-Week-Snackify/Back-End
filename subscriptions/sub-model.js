@@ -26,7 +26,7 @@ function findSubById(id) {
 function findSnacks(id) {
     return db('subs')
     .join("snacks", "subs.id", "snacks.subId")
-    .select("subs.id as subId", "subs.nameOfSubsription", "snacks.name as snackName", "snacks.price")
+    .select("subs.id as subId", "subs.nameOfSubscription", "snacks.name as snackName", "snacks.price")
     .where({ subId: id})
 }
 // function addSub(sub) {
