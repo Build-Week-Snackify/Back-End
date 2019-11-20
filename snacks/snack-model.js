@@ -79,7 +79,7 @@ function removeNutrition(id) {
 function findNutrition(id) {
     return db('nutrition')
     .join("snacks", "snacks.id", "nutrition.snackId")
-    .select("snacks.id as snackId", "snacks.name", "nutrition.calories", "nutrition.totalFat", "nutrition.protein",
+    .select("snacks.id as snackId", "snacks.name", "nutrition.calories", "nutrition.totalFat", "nutrition.totalSugars", "nutrition.protein",
     "nutrition.carbs", "nutrition.allergens", "nutrition.id as nutritionId")
     .where({ snackId: id})
 };
