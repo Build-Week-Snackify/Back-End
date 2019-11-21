@@ -58,7 +58,7 @@ router.post('/', checkRole(['organization', 'orgAdmin']), (req, res) => {
 });
 
 //UPDATES A SNACK
-router.put('/:id', checkRole(['organization', 'orgAdmin']), (req, res) => {
+router.put('/:id', checkRole(['organization', 'orgAdmin']),  (req, res) => {
     const { id } = req.params;
     const changes = req.body;
 
@@ -147,3 +147,4 @@ function checkRole(rolesArr) {
         }
     }
 };
+

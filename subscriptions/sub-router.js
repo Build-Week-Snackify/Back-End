@@ -4,23 +4,31 @@ const Subs = require('./sub-model');
 
 
 
+
 //GETS ALL SUBS
-router.get('/', checkRole(['organization', 'orgAdmin']), (req, res) => {
 
-    Subs.findSub()
-        .then(subs => {
-            res.send(subs)
-        })
-        .catch(err => res.json(err))
-});
-
+router.get('/', checkRole(['organization', 'orgAdmin']),  (req, res, next) => {
+    const id = req.decodedJwt.orgId || req.decodedJwt.id
+    
+    console.log(req.decodedJwt)
+    
+        Subs.findSub(id)
+            .then(subs => {
+                res.send(subs)
+                
+            })
+            .catch(err => res.json(err))
+    });
 
 //GET ALL SNACKS BY SUB ID
-router.get('/:id/snacks', checkRole(['organization', 'orgAdmin']), (req, res) => {
-
-    const { id } = req.params;
-
-    Subs.findSnacks(id)
+router.get('/:id/snacks', checkRole(['organization', 'orgAdmin']),  (req, res) => {
+    // const orgid = req.decodedJwt.orgId || req.decodedJwt.id
+    
+    // const id = req.decodedJwt.orgId || req.decodedJwt.id
+  const { id } = req.params;
+            
+     Subs.findSnacks(id)
+            
         .then(snacks => {
             if (snacks.length) {
             res.json(snacks)
@@ -28,6 +36,10 @@ router.get('/:id/snacks', checkRole(['organization', 'orgAdmin']), (req, res) =>
             res.status(404).json({ message: 'Failed to get sub!'})
             }
         })
+   
+        
+    // })
+    
         .catch(err => {
             res.status(500).json(err)
         })
@@ -35,9 +47,10 @@ router.get('/:id/snacks', checkRole(['organization', 'orgAdmin']), (req, res) =>
 
 //ADDS NEW SUB
 router.post('/', checkRole(['organization', 'orgAdmin']), (req, res) => {
+    const id = req.decodedJwt.orgId || req.decodedJwt.id
     const subData = req.body;
 
-    Subs.addSub(subData)
+    Subs.addSub(subData, id)
     .then(sub => {
         res.status(201).json(sub);
     })
@@ -97,3 +110,23 @@ function checkRole(rolesArr) {
         }
     }
 };
+function checkUser(id) {
+    return function(req, res, next) {
+        const org = req.params.id
+        console.log(req.decodedJwt)
+        const id = req.decodedJwt.orgId || req.decodedJwt.id
+        if(org === id) { // ← no need to add another || here
+            next();
+        } else {
+            res.status(403).json({ message: 'Sorry!'})
+        }
+    }
+}
+
+// console.log(req.decodedJwt)
+
+    // Subs.findSub(id)
+    //     .then(subs => {
+    //         res.send(subs)
+    //     })
+    //     .catch(err => res.json(err))

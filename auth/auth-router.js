@@ -125,9 +125,22 @@ router.put('/:id/update-role', authenticate, checkRole(['organization', 'orgAdmi
     })
 });
 
-router.get('/employees', authenticate, checkRole(['organization', 'orgAdmin']), (req, res) => {
+router.get('/:id/org', authenticate, checkRole(['organization', 'orgAdmin']), (req, res) => {
+    const id = req.decodedJwt.id
 
-    Users.find()
+    Users.findOrgId(id)
+    .then(org => {
+        res.send(org)
+    })
+    .catch(err => {
+        res.status(500).json({ message: 'Failed to update employee!' })
+    })
+})
+
+//GETS ALL EMPLOYEES FOR AN ORG
+router.get('/employees', authenticate, checkRole(['organization', 'orgAdmin']), (req, res) => {
+    const id = req.decodedJwt.orgId || req.decodedJwt.id
+    Users.findSome(id)
         .then(employees => {
             res.send(employees)
         })
@@ -148,9 +161,12 @@ router.get('/organizations', authenticate, checkRole(['organization', 'orgAdmin'
 function getJwtToken(user) {
     console.log(user)
     const payload = {
-        subject: user.id,
-        username: user.username,
-        role: user.role
+        id: user.id,
+        
+        role: user.role,
+
+        orgId: user.orgId,
+        subId: user.subId
     };
 
     const options = {

@@ -3,6 +3,8 @@ const db = require('../database/dbConfig');
 module.exports = {
     find,
     findOrg,
+    findOrgId,
+    findSome,
     insert, 
      add,
     findBy,
@@ -24,6 +26,16 @@ function findOrg() {
     .from('org')
 };
 
+function findOrgId(id) {
+    return db('org')
+    .where({ id })
+    .first()
+};
+
+function findSome(id) {
+    return db('employee')
+    .where({ orgId: id })
+}
 function findBy(filter) {
     return db('org')
     .where(filter)

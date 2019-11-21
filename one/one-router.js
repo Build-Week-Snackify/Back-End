@@ -4,8 +4,9 @@ const Request = require('./one-model');
 
 //GET ALL REQUESTS
 router.get('/',  (req, res) => {
-
-    Request.find()
+    const  id  = req.decodedJwt.id
+    
+    Request.find(id)
         .then(request => {
             res.send(request)
         })
@@ -15,8 +16,9 @@ router.get('/',  (req, res) => {
 //ADDS NEW REQUEST
 router.post('/',  (req, res) => {
     const requestData = req.body;
-
-    Request.add(requestData)
+    const id = req.decodedJwt.subId;
+    console.log(req.decodedJwt.id)
+    Request.add(requestData, id)
     .then(request => {
         res.status(201).json(request);
     })

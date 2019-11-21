@@ -4,8 +4,9 @@ const Request = require('./request-model');
 
 //GET ALL REQUESTS
 router.get('/', checkRole('employee'), (req, res) => {
-
-    Request.find()
+    const id = req.decodedJwt.id
+    
+    Request.find(id)
         .then(request => {
             res.send(request)
         })
@@ -15,8 +16,8 @@ router.get('/', checkRole('employee'), (req, res) => {
 //ADDS NEW REQUEST
 router.post('/', checkRole('employee'), (req, res) => {
     const requestData = req.body;
-
-    Request.add(requestData)
+    const id = req.decodedJwt.id
+    Request.add(requestData, id)
     .then(request => {
         res.status(201).json(request);
     })

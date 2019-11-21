@@ -8,10 +8,11 @@ module.exports = {
     findById
 };
 
-function find() {
+function find(id) {
     return db
-    .select('*')
-    .from('request');
+    // .select('*')
+    // .from('request');
+    .where({id})
 };
 
 

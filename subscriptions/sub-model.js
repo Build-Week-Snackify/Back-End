@@ -9,11 +9,14 @@ module.exports = {
     findSnacks
 };
 
-function findSub() {
+function findSub(id) {
 
-    return db
-    .select('*')
-    .from('subs');
+    return db('subs')
+    // .select('*')
+    // .from('subs');
+
+    .where({ orgId: id})
+    // .first()
   
 };
 
@@ -26,7 +29,7 @@ function findSubById(id) {
 function findSnacks(id) {
     return db('subs')
     .join("snacks", "subs.id", "snacks.subId")
-    .select("subs.id as subId", "subs.nameOfSubscription", "snacks.name as snackName", "snacks.price")
+    .select("subs.id as subId", "subs.nameOfSubscription", "snacks.name as snackName", "snacks.price", "subs.orgId as orgId")
     .where({ subId: id})
 }
 // function addSub(sub) {
